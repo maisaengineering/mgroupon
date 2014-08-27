@@ -24,5 +24,24 @@ module Mgroupon
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+
+
+    config.encoding = "utf-8"
+    config.exceptions_app = self.routes
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.initialize_on_precompile = false
+    I18n.enforce_available_locales = true
+
+    if Rails.env.development? or Rails.env.test?
+      ENV['FACEBOOK_APP_ID']= '433306180139609'
+      ENV['FACEBOOK_APP_SECRET'] = 'e536a65403d90c7ba3be9ee636bc1ae5'
+    end
+
+
   end
 end
